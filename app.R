@@ -47,15 +47,6 @@ ui <- fluidPage(
       step = 5
     ),
     sliderInput(
-      "RWFDC",
-      label="Cost of a false discovery in the real world (RWFDC)",
-      min = 0,
-      max = 100,
-      post  = "m $",
-      value = 10,
-      step = 1
-    ),
-    sliderInput(
       "TNV",
       label="True negative value (TNV)",
       min = 0,
@@ -64,17 +55,33 @@ ui <- fluidPage(
       value = 1,
       step = 0.5
     ),
-    selectInput(
-      "es",
-      "Effect size (Cohen's d):",
-      c(
-        "Very Small (0.1)" = 0.1,
-        "Small (0.3)" = 0.3,
-        "Medium (0.5)" = 0.5,
-        "Large (0.8)" = 0.8,
-        "Very Large (1.2)" = 1.2
+    hr(),
+    fluidRow(
+      column(
+        6,
+        selectInput(
+          "es",
+          "Effect size (Cohen's d):",
+          c(
+            "Very Small (0.1)" = 0.1,
+            "Small (0.3)" = 0.3,
+            "Medium (0.5)" = 0.5,
+            "Large (0.8)" = 0.8,
+            "Very Large (1.2)" = 1.2
+          ),
+          selected = "0.5"
+        )
       ),
-      selected = "0.5"
+      column(
+        6,
+        selectInput(
+          "biases",
+          "Bias values to show",
+          lapply(biases, function(x) { x$value }),
+          multiple = TRUE,
+          selected = c(0.1, 0.3, 0.5, 0.8)
+        )
+      )
     ),
     selectInput(
       "phase",
@@ -88,12 +95,40 @@ ui <- fluidPage(
       ),
       selected = "P3"
     ),
-    selectInput(
-      "biases",
-      "Bias values to show",
-      lapply(biases, function(x) { x$value }),
-      multiple = TRUE,
-      selected = c(0.1, 0.3, 0.5, 0.8)
+    hr(),
+    fluidRow(
+      column(
+        6,
+        sliderInput(
+          "SRP",
+          label="Subsequent research phases (SRP)",
+          min = 0,
+          max = 10,
+          value = 2,
+          step = 1
+        )
+      ),
+      column(
+        6,
+        sliderInput(
+          "GAE",
+          label="Grant amount escalation (GAE)",
+          min = 0,
+          max = 300,
+          value = 100,
+          post  = " %",
+          step = 25
+        )
+      )
+    ),
+    sliderInput(
+      "RWFDC",
+      label="Cost of a false discovery in the real world (RWFDC)",
+      min = 0,
+      max = 100,
+      post  = "m $",
+      value = 10,
+      step = 5
     ),
     hr(),
     fluidRow(
@@ -222,6 +257,9 @@ ui <- fluidPage(
       tags$li("α = .05")
     ),
     hr(),
+    h3("Generated data"),
+    dataTableOutput("table"),
+    hr(),
     tags$blockquote(
       p("All models are wrong, but some are useful."),
       tags$small("George E.P. Box")
@@ -344,19 +382,27 @@ TotalValue <- function(Total.FDC, Total.TDV, Total.FNC, Total.TNV) {
   return(fix(Total.TDV - Total.FDC - Total.FNC + Total.TNV))
 }
 
-SubsequentCosts <- function(power, R, u, grant, cpp, remainingStages) {
+SubsequentCosts <- function(power, grant, R, u, cpp, SRP, GAE, ...) {
   total <- 0
 
   nextStageR <- PPV(power, R, u)
-  nextGrant <- grant * 2
+  nextGrant <- grant * (GAE + 1)
   nextPower <- Power(SampleSize(nextGrant, cpp))
   nextU <- max(0.1, u - 0.2)
   
   nextStageFDR <- FDR(nextPower, nextStageR, nextU)
   
-  if (remainingStages > 0) {
-    remainingStages = remainingStages - 1
-    nextStageCost = SubsequentCosts(nextPower, nextStageR, nextU, nextGrant, cpp, remainingStages)
+  if (SRP > 0) {
+    SRP = SRP - 1
+    nextStageCost = SubsequentCosts(
+      power = nextPower,
+      R = nextStageR,
+      u = nextU,
+      grant = nextGrant,
+      cpp = cpp,
+      SRP = SRP,
+      GAE = GAE
+    )
     total = (nextGrant * nextStageFDR) + nextStageCost
   } else {
     # final cost for false discoveries that make it through
@@ -366,23 +412,23 @@ SubsequentCosts <- function(power, R, u, grant, cpp, remainingStages) {
   return(total);
 }
 
-FalseDiscoveryCost <- function(power, R, u, grant, cpp, remainingStages) {
+FalseDiscoveryCost <- function(FPR, ...) {
   # FDR = prior odds for the next study that costs 3x.
   # the likelihood of failure * costs is the FDC.
-  return(SubsequentCosts(power, R, u, grant, cpp, remainingStages) * FPR(power, R, u))
+  return(SubsequentCosts(...) * FPR)
 }
 
-TrueDiscoveryValue <- function(power, TDV, R, u) {
+TrueDiscoveryValue <- function(power, TDV, R, u, ...) {
   return(PPV(power, R, u) * TDV * PFR(power, R, u))
 }
 
-FalseNegCost <- function(power, TDV, R, u) {
+FalseNegCost <- function(power, TDV, R, u, ...) {
   # the cost to get a new pos discovery in false neg's place
   # since *this* finding isn't valuable so much as *a* finding
   return(TDV * FNR(power, R, u))
 }
 
-TrueNegValue <- function(power, TNV, R, u) {
+TrueNegValue <- function(power, TNV, R, u, ...) {
   return(TNR(power, R, u) * TNV)
 }
 
@@ -410,17 +456,17 @@ round_any <- function(x, accuracy, f = round){
   f(x / accuracy) * accuracy
 }
 
-getDataPer <- function (u, data, cpp, R, remainingStages, TDV, TNV) {
+getDataPerU <- function (data, R, u, ...) {
   return(data %>% mutate(
-    Total.FDC = FalseDiscoveryCost(power, R, u, grant, cpp, remainingStages),
-    Total.TDV = TrueDiscoveryValue(power, TDV, R, u),
-    Total.FNC = FalseNegCost(power, TDV, R, u),
-    Total.TNV = TrueNegValue(power, TNV, R, u),
+    TPR = TPR(power, R = R, u = u),
+    FPR = FPR(power, R = R, u = u),
+    TNR = TNR(power, R = R, u = u),
+    FNR = FNR(power, R = R, u = u),
+    Total.FDC = FalseDiscoveryCost(power, grant, R = R, u = u, FPR = FPR, ...),
+    Total.TDV = TrueDiscoveryValue(power, R = R, u = u, ...),
+    Total.FNC = FalseNegCost(power, R = R, u = u, ...),
+    Total.TNV = TrueNegValue(power, R = R, u = u, ...),
     Total.Value = TotalValue(Total.FDC, Total.TDV, Total.FNC, Total.TNV),
-    TPR = TPR(power, R, u),
-    FPR = FPR(power, R, u),
-    TNR = TNR(power, R, u),
-    FNR = FNR(power, R, u),
     ROI = (Total.Value - grant) / grant
   ))
 }
@@ -439,9 +485,9 @@ getData <- function(cpp, maxGrant, minGrant, selectedBiases, ...) {
   for (i in biases) {
     if (is.element(paste(i$value), selectedBiases)) {
       u = paste(i$value)
-      dat <- getDataPer(u = i$value, data = data, cpp = cpp, ...)
+      dat <- getDataPerU(u = i$value, data = data, cpp = cpp, ...)
       dat$u <- u
-      datalist[[paste(u)]] <- dat
+      datalist[[u]] <- dat
     }
   }
   Data <<- do.call(rbind, datalist)
@@ -488,16 +534,20 @@ clean <- function(x, digits) {
 formatInput <- function(inputs) {
   inp = c()
   for (name in names(inputs)) {
-    if (!grepl("graph_click", name) && !grepl("biases", name) && !is.null(inputs[[name]])) {
+    if (!grepl("graph_click", name) && !grepl("biases", name) && !grepl("table", name) && !is.null(inputs[[name]])) {
       inp <- c(inp, paste(tags$b(name), inputs[[name]]))
     }
   }
   return(paste(inp, "|"))
 }
 
-server <- function(input, output) {
+server <- function(input, output, session) {
+  observeEvent(input$phase, {
+    updateSelectInput(session, "SRP", selected = get(input$phase)["remaining"])
+  })
+
   data <- reactive({
-    PctSample <<- (input$pctSample / 100)
+    PctSample <<- input$pctSample / 100
     EffectSize <<- as.numeric(input$es)
     RWFDC <<- (input$RWFDC * 1000 * 1000)
     getData(
@@ -507,12 +557,11 @@ server <- function(input, output) {
       TDV = input$TDV * 1000 * 1000,
       TNV = input$TNV * 1000 * 1000,
       R = as.numeric(get(input$phase)["R"]),
-      remainingStages = as.numeric(get(input$phase)["remaining"]),
-      selectedBiases = input$biases
+      selectedBiases = input$biases,
+      GAE = input$GAE / 100,
+      SRP = input$SRP
     )
   })
-
-  # (cpp, TDV, maxGrant, minGrant, R)
 
   output$graph <- renderPlot({
     data()
@@ -530,7 +579,7 @@ server <- function(input, output) {
     datatable(data() %>% select(one_of(toKeep)) %>% mutate_if(is.numeric, formatRound, 2))
   })
 
-  output$info <- renderPrint ({
+  output$info <- renderPrint({
     row <- nearPoints(data(), input$graph_click, threshold = 10, maxpoints = 1, addDist = FALSE)
     return(row %>% select(one_of(toKeep)) %>% mutate_if(is.numeric, clean, 2))
   })
