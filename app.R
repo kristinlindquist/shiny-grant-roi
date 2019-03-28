@@ -4,13 +4,12 @@ library(pwr)
 library(ggplot2)
 library(dplyr)
 library(DT)
-library("scales")
 
-P1 <- c(name = "1:1 (e.g. phase III RCT)", remaining = 0, R = 1)
-P2 <- c(name = "1:5 (e.g. phase I/II RCT)", remaining = 1, R = 0.2)
-P3 <- c(name = "1:10 (e.g. exploratory epidemiological study)", remaining = 2, R = 0.1)
-P4 <- c(name = "1:100", remaining = 3, R = 0.01)
-P5 <- c(name = "1:1,000 (e.g. discovery-oriented exploratory research)", remaining = 5, R = 0.001)
+R1 <- c(name = "1:1 (e.g. phase III RCT)", remaining = 0, R = 1)
+R0.2 <- c(name = "1:5 (e.g. phase I/II RCT)", remaining = 1, R = 0.2)
+R0.1 <- c(name = "1:10 (e.g. exploratory epidemiological study)", remaining = 2, R = 0.1)
+R0.01 <- c(name = "1:100", remaining = 3, R = 0.01)
+R0.001 <- c(name = "1:1,000 (e.g. discovery-oriented exploratory research)", remaining = 5, R = 0.001)
 
 biases <- list(
   "0.1" = list(name = "Low (0.1) (e.g. high quality RCT)", value = 0.1),
@@ -87,13 +86,13 @@ ui <- fluidPage(
       "phase",
       "Pre-study odds (R):",
       c(
-        "1:1 (similar to that of a phase III RCT)" = "P1",
-        "1:5 (similar to that of a phase I/II RCT)" = "P2",
-        "1:10 (similar to that of an epidemiological study)" = "P3",
-        "1:100" = "P4",
-        "1:1,000 (e.g. discovery-oriented exploratory research)" = "P5"
+        "1:1 (similar to that of a phase III RCT)" = "R1",
+        "1:5 (similar to that of a phase I/II RCT)" = "R0.2",
+        "1:10 (similar to that of an epidemiological study)" = "R0.1",
+        "1:100" = "R0.01",
+        "1:1,000 (e.g. discovery-oriented exploratory research)" = "R0.001"
       ),
-      selected = "P3"
+      selected = "R0.1"
     ),
     hr(),
     fluidRow(
@@ -120,6 +119,14 @@ ui <- fluidPage(
           step = 25
         )
       )
+    ),
+    sliderInput(
+      "BCR",
+      label="Bias correction rate (BCR)",
+      min = 0,
+      max = 0.8,
+      value = 0.2,
+      step = 0.1
     ),
     sliderInput(
       "RWFDC",
@@ -382,13 +389,13 @@ TotalValue <- function(Total.FDC, Total.TDV, Total.FNC, Total.TNV) {
   return(fix(Total.TDV - Total.FDC - Total.FNC + Total.TNV))
 }
 
-SubsequentCosts <- function(power, grant, R, u, cpp, SRP, GAE, ...) {
+SubsequentCosts <- function(power, grant, R, u, cpp, SRP, GAE, BCR, ...) {
   total <- 0
 
   nextStageR <- PPV(power, R, u)
   nextGrant <- grant * (GAE + 1)
   nextPower <- Power(SampleSize(nextGrant, cpp))
-  nextU <- max(0.1, u - 0.2)
+  nextU <- max(0.1, u - BCR)
   
   nextStageFDR <- FDR(nextPower, nextStageR, nextU)
   
@@ -401,7 +408,8 @@ SubsequentCosts <- function(power, grant, R, u, cpp, SRP, GAE, ...) {
       grant = nextGrant,
       cpp = cpp,
       SRP = SRP,
-      GAE = GAE
+      GAE = GAE,
+      BCR = BCR
     )
     total = (nextGrant * nextStageFDR) + nextStageCost
   } else {
@@ -413,8 +421,6 @@ SubsequentCosts <- function(power, grant, R, u, cpp, SRP, GAE, ...) {
 }
 
 FalseDiscoveryCost <- function(FPR, ...) {
-  # FDR = prior odds for the next study that costs 3x.
-  # the likelihood of failure * costs is the FDC.
   return(SubsequentCosts(...) * FPR)
 }
 
@@ -423,8 +429,6 @@ TrueDiscoveryValue <- function(power, TDV, R, u, ...) {
 }
 
 FalseNegCost <- function(power, TDV, R, u, ...) {
-  # the cost to get a new pos discovery in false neg's place
-  # since *this* finding isn't valuable so much as *a* finding
   return(TDV * FNR(power, R, u))
 }
 
@@ -559,7 +563,8 @@ server <- function(input, output, session) {
       R = as.numeric(get(input$phase)["R"]),
       selectedBiases = input$biases,
       GAE = input$GAE / 100,
-      SRP = input$SRP
+      SRP = input$SRP,
+      BCR = input$BCR
     )
   })
 
