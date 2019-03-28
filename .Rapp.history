@@ -1,0 +1,1793 @@
+unbox(proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50))))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = c(row, unbox(power))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+unbox(proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50))))
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = c(row, unbox(flatten(power)))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    print(power)#
+    row = c(row, unbox(power))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = c(row, power)#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = list(row, power)#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+unbox(proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50))))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = cbind2(row, power)#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+unbox(proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50))))
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = c(row, power)#
+    print(typeof(row))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    print(typeof(row))#
+    print(typeof(power))#
+    row = c(row, power)#
+    print(typeof(row))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    print(typeof(row))#
+    print(typeof(power))#
+    row = append(row, power)#
+    print(typeof(row))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = unlist(append(row, power))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = append(row, power) #
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+print(proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50))))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    //row = append(row, power)#
+    row[["power"]] <- power$power#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row[["power"]] <- power$power#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    //row = append(row, power)#
+    row[["power"]] <- power$power#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row[["power"]] <- power$power#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = append(row, power)#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = merge(row, power)#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+t
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = append(row, t(power))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    print(row)#
+    row = append(row, power)#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    row = append(row, as.data.frame(power))#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    lapply(power, function(attr) {#
+      row = c(row, attr)#
+    })#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('pwr.t.test', data.frame(list(d=0.8, sig.level=0.05, n=50)))
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+proxy('prospective_gelman', list(d=0.3, n=25))
+docall('prospective_gelman', list(d=0.8, n=50))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    lapply(power, function(attr) {#
+      print(attr)#
+      row = c(row, attr)#
+    })#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall('prospective_gelman', list(d=0.8, n=50))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    })#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall('prospective_gelman', list(d=0.8, n=50))
+unbox(docall('prospective_gelman', list(d=0.8, n=50)))
+proxy <- function(method, data) {#
+    result <- lapply(#
+      split(data, 1:nrow(data)),#
+      function(r) docall(method, r)#
+    )#
+      result = unbox(result)#
+    return(unname(result))#
+}
+proxy('prospective_gelman', list(d=0.3, n=25))
+proxy <- function(method, data) {#
+    result <- lapply(#
+      split(data, 1:nrow(data)),#
+      function(r) docall(method, r)#
+    )#
+    if(!is.null(result) && is.atomic(result) && length(dim(result)) < 2) {#
+      result = unbox(result)#
+    }#
+    return(unname(result))#
+}
+proxy('prospective_gelman', list(d=0.3, n=25))
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+proxy <- function(method, data) {#
+    result <- lapply(#
+      split(data, 1:nrow(data)),#
+      function(r) docall(method, r)#
+    )#
+      result = unbox(result)#
+    return(unname(result))#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  if(!is.null(result) && is.atomic(result) && length(dim(result)) < 2) {#
+    row = unbox(row)#
+  }#
+  return(row)#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  if(!is.null(row) && is.atomic(row) && length(dim(row)) < 2) {#
+    row = unbox(row)#
+  }#
+  return(row)#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+proxy <- function(method, data) {#
+    result <- lapply(#
+      split(data, 1:nrow(data)),#
+      function(r) docall(method, r)#
+    )#
+    return(unname(result))#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  if(!is.null(row) && is.atomic(row) && length(dim(row)) < 2) {#
+    print('unbox')#
+    row = unbox(row)#
+  }#
+  return(row)#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25), list(d=0.8, n=25)))
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25),docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+    row = unbox(row)#
+  return(row)#
+}#
+ list(d=0.8, n=25)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+    row = unbox(row)#
+  return(row)#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25),docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[key] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+    row = unbox(row)#
+  return(row)#
+}#
+ list(d=0.8, n=25)))
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  if(!is.null(row) && is.atomic(row) && length(dim(row)) < 2) {#
+    row = unbox(row)#
+  }#
+  return(row)#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+    row[["power"]] <- power$power#
+  if(!is.null(row) && is.atomic(row) && length(dim(row)) < 2) {#
+    row = unbox(row)#
+  }#
+  return(row)#
+}
+proxy('prospective_gelman', data.frame(list(d=0.3, n=25)))
+data <- fromJSON('{"method":"pwr.t.test","data":[{"d":0.2,"alternative":"two.sided","sig.level":0.05,"n":5},{"d":0.5,"alternative":"two.sided","sig.level":0.05,"n":5},{"d":0.8,"alternative":"two.sided","sig.level":0.05,"n":5}]}#
+')
+proxy('prospective_gelman',data)
+proxy('prospective_gelman', data)
+data
+proxy('prospective_gelman', data$data)
+proxy(data$method, data$data)
+toJSON(proxy(data$method, data$data))
+proxy <- function(method, data) {#
+    result <- lapply(#
+      split(data, 1:nrow(data)),#
+      function(r) unbox(docall(method, r))#
+    )#
+    return(unname(result))#
+}
+toJSON(proxy(data$method, data$data))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = unbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(value) {#
+  if(is.null(x) || !is.atomic(x) || length(dim(x)) > 1) {#
+    return(unbox(value)#
+  }#
+  return(value)#
+}#
+#
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(value) {#
+  if(is.null(x) || !is.atomic(x) || length(dim(x)) > 1) {#
+    return(unbox(value)#
+  }#
+  return(value)#
+}
+maybeUnbox <- function(value) {#
+  if(!is.null(x) && is.atomic(x) && length(dim(x)) < 2) {#
+    return(unbox(value))#
+  }#
+  return(value)#
+}#
+#
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {#
+  if(!is.null(x) && is.atomic(x) && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = power[key]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(length(dim(x)))#
+  if(!is.null(x) && is.atomic(x) && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && is.atomic(x) && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) == 1) {#
+    return x[0]#
+  }#
+  return(x)#
+}
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) == 1) {#
+    returnx(x[0])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) == 1) {#
+    returnx(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(is.atomic(x))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) == 1) {#
+    return(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) == 1) {#
+    return(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) < 2) {#
+    return(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  print(x)#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(dim(x)) == 1) {#
+    return(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  print(x)#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1) {#
+    return(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  print(x)#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1) {#
+    return(x[0])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  print(x)#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1) {#
+    return(x[[0]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+maybeUnbox <- function(x) {  #
+  print(length(dim(x)))#
+  print(typeof(x))#
+  print(x)#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1) {#
+    return(x[[1]])#
+  }#
+  return(x)#
+}
+toJSON(proxy(data$method, data$data))
+alpha <- 0.05
+df <- Inf
+z <- qt(1-alpha/2, df)
+z
+p.hi <- 1 - pt(z-A/s, df)
+A <- 0.8
+p.hi <- 1 - pt(z-A/s, df)
+s = 0.3
+p.hi <- 1 - pt(z-A/s, df)
+p.hi
+p.lo <- pt(-z-A/s, df)
+p.lo
+pt(-z-A/s, df)
+pt
+"pwr.t.test" <-#
+function (n = NULL, d = NULL, sig.level = 0.05, power = NULL, #
+    type = c("two.sample", "one.sample", "paired"), alternative = c("two.sided", #
+        "less","greater")) #
+{#
+    if (sum(sapply(list(n, d, power, sig.level), is.null)) != #
+        1) #
+        stop("exactly one of n, d, power, and sig.level must be NULL")#
+    if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > #
+        sig.level | sig.level > 1)) #
+        stop(sQuote("sig.level"), " must be numeric in [0, 1]")#
+    if (!is.null(power) && !is.numeric(power) || any(0 > power | #
+        power > 1)) #
+        stop(sQuote("power"), " must be numeric in [0, 1]")#
+    type <- match.arg(type)#
+    alternative <- match.arg(alternative)#
+    tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1)#
+ttside<-switch(alternative, less = 1, two.sided = 2, greater=3)#
+#
+    tside <- switch(alternative, less = 1, two.sided = 2, greater =1)#
+    if (tside == 2 && !is.null(d)) #
+        d <- abs(d)#
+    if (ttside == 1) {#
+        p.body <- quote({#
+            nu <- (n - 1) * tsample#
+            pt(qt(sig.level/tside, nu, lower = TRUE), nu, ncp = sqrt(n/tsample) * #
+                d, lower = TRUE)#
+        })#
+    }#
+    if (ttside == 2)  {#
+        p.body <- quote({#
+            nu <- (n - 1) * tsample#
+            qu <- qt(sig.level/tside, nu, lower = FALSE)#
+            pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + #
+                pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE)#
+        })#
+    }#
+	if (ttside == 3) {#
+        p.body <- quote({#
+            nu <- (n - 1) * tsample#
+            pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = sqrt(n/tsample) * #
+                d, lower = FALSE)#
+        })#
+    }#
+#
+    if (is.null(power)) #
+        power <- eval(p.body)#
+    else if (is.null(n)) #
+        n <- uniroot(function(n) eval(p.body) - power, c(2 + #
+            1e-10, 1e+09))$root#
+    else if (is.null(d)) {#
+ 	if(ttside==2){       d <- uniroot(function(d) eval(p.body) - power, c(1e-07, #
+            10))$root}#
+if(ttside==1){       d <- uniroot(function(d) eval(p.body) - power, c(-10, #
+            5))$root}#
+if(ttside==3){       d <- uniroot(function(d) eval(p.body) - power, c(-5, #
+            10))$root}#
+#
+}#
+    else if (is.null(sig.level)) #
+        sig.level <- uniroot(function(sig.level) eval(p.body) - #
+            power, c(1e-10, 1 - 1e-10))$root#
+    else stop("internal error")#
+    NOTE <- switch(type, paired = "n is number of *pairs*", two.sample = "n is number in *each* group", #
+        NULL)#
+    METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = "Two-sample", #
+        paired = "Paired"), "t test power calculation")#
+    structure(list(n = n, d = d, sig.level = sig.level, power = power, #
+        alternative = alternative, note = NOTE, method = METHOD), #
+        class = "power.htest")#
+}
+"pwr.myt.test" <-#
+#
+function (n = NULL, d = NULL, sig.level = 0.05, power = NULL, #
+#
+    type = c("two.sample", "one.sample", "paired"), alternative = c("two.sided", #
+#
+        "less","greater")) #
+#
+{#
+#
+    if (sum(sapply(list(n, d, power, sig.level), is.null)) != #
+#
+        1) #
+#
+        stop("exactly one of n, d, power, and sig.level must be NULL")#
+#
+    if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > #
+#
+        sig.level | sig.level > 1)) #
+#
+        stop(sQuote("sig.level"), " must be numeric in [0, 1]")#
+#
+    if (!is.null(power) && !is.numeric(power) || any(0 > power | #
+#
+        power > 1)) #
+#
+        stop(sQuote("power"), " must be numeric in [0, 1]")#
+#
+    type <- match.arg(type)#
+#
+    alternative <- match.arg(alternative)#
+#
+    tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1)#
+#
+ttside<-switch(alternative, less = 1, two.sided = 2, greater=3)#
+    tside <- switch(alternative, less = 1, two.sided = 2, greater =1)#
+#
+    if (tside == 2 && !is.null(d)) #
+#
+        d <- abs(d)#
+#
+    if (ttside == 1) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = TRUE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = TRUE)#
+#
+        })#
+#
+    }#
+#
+    if (ttside == 2)  {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            qu <- qt(sig.level/tside, nu, lower = FALSE)#
+#
+            pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + #
+#
+                pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE)#
+#
+        })#
+        print(p.body)#
+#
+    }#
+#
+	if (ttside == 3) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = FALSE)#
+#
+        })#
+#
+    }#
+    if (is.null(power)) #
+#
+        power <- eval(p.body)#
+#
+    else if (is.null(n)) #
+#
+        n <- uniroot(function(n) eval(p.body) - power, c(2 + #
+#
+            1e-10, 1e+09))$root#
+#
+    else if (is.null(d)) {#
+#
+ 	if(ttside==2){       d <- uniroot(function(d) eval(p.body) - power, c(1e-07, #
+#
+            10))$root}#
+#
+if(ttside==1){       d <- uniroot(function(d) eval(p.body) - power, c(-10, #
+#
+            5))$root}#
+#
+if(ttside==3){       d <- uniroot(function(d) eval(p.body) - power, c(-5, #
+#
+            10))$root}#
+}#
+#
+    else if (is.null(sig.level)) #
+#
+        sig.level <- uniroot(function(sig.level) eval(p.body) - #
+#
+            power, c(1e-10, 1 - 1e-10))$root#
+#
+    else stop("internal error")#
+#
+    NOTE <- switch(type, paired = "n is number of *pairs*", two.sample = "n is number in *each* group", #
+#
+        NULL)#
+#
+    METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = "Two-sample", #
+#
+        paired = "Paired"), "t test power calculation")#
+#
+    structure(list(n = n, d = d, sig.level = sig.level, power = power, #
+#
+        alternative = alternative, note = NOTE, method = METHOD), #
+#
+        class = "power.htest")#
+#
+}
+pwr.myt.test(d=0.8, sig.level=0.05, n=50)
+"pwr.myt.test" <-#
+#
+function (n = NULL, d = NULL, sig.level = 0.05, power = NULL, #
+#
+    type = c("two.sample", "one.sample", "paired"), alternative = c("two.sided", #
+#
+        "less","greater")) #
+#
+{#
+#
+    if (sum(sapply(list(n, d, power, sig.level), is.null)) != #
+#
+        1) #
+#
+        stop("exactly one of n, d, power, and sig.level must be NULL")#
+#
+    if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > #
+#
+        sig.level | sig.level > 1)) #
+#
+        stop(sQuote("sig.level"), " must be numeric in [0, 1]")#
+#
+    if (!is.null(power) && !is.numeric(power) || any(0 > power | #
+#
+        power > 1)) #
+#
+        stop(sQuote("power"), " must be numeric in [0, 1]")#
+#
+    type <- match.arg(type)#
+#
+    alternative <- match.arg(alternative)#
+#
+    tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1)#
+#
+ttside<-switch(alternative, less = 1, two.sided = 2, greater=3)#
+    tside <- switch(alternative, less = 1, two.sided = 2, greater =1)#
+#
+    if (tside == 2 && !is.null(d)) #
+#
+        d <- abs(d)#
+#
+    if (ttside == 1) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = TRUE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = TRUE)#
+#
+        })#
+#
+    }#
+#
+    if (ttside == 2)  {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            qu <- qt(sig.level/tside, nu, lower = FALSE)#
+#
+            pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + #
+#
+                pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE)#
+#
+        })#
+        print((n - 1) * tsample)#
+        print(p.body)#
+#
+    }#
+#
+	if (ttside == 3) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = FALSE)#
+#
+        })#
+#
+    }#
+    if (is.null(power)) #
+#
+        power <- eval(p.body)#
+#
+    else if (is.null(n)) #
+#
+        n <- uniroot(function(n) eval(p.body) - power, c(2 + #
+#
+            1e-10, 1e+09))$root#
+#
+    else if (is.null(d)) {#
+#
+ 	if(ttside==2){       d <- uniroot(function(d) eval(p.body) - power, c(1e-07, #
+#
+            10))$root}#
+#
+if(ttside==1){       d <- uniroot(function(d) eval(p.body) - power, c(-10, #
+#
+            5))$root}#
+#
+if(ttside==3){       d <- uniroot(function(d) eval(p.body) - power, c(-5, #
+#
+            10))$root}#
+}#
+#
+    else if (is.null(sig.level)) #
+#
+        sig.level <- uniroot(function(sig.level) eval(p.body) - #
+#
+            power, c(1e-10, 1 - 1e-10))$root#
+#
+    else stop("internal error")#
+#
+    NOTE <- switch(type, paired = "n is number of *pairs*", two.sample = "n is number in *each* group", #
+#
+        NULL)#
+#
+    METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = "Two-sample", #
+#
+        paired = "Paired"), "t test power calculation")#
+#
+    structure(list(n = n, d = d, sig.level = sig.level, power = power, #
+#
+        alternative = alternative, note = NOTE, method = METHOD), #
+#
+        class = "power.htest")#
+#
+}
+pwr.myt.test(d=0.8, sig.level=0.05, n=50)
+"pwr.myt.test" <-#
+#
+function (n = NULL, d = NULL, sig.level = 0.05, power = NULL, #
+#
+    type = c("two.sample", "one.sample", "paired"), alternative = c("two.sided", #
+#
+        "less","greater")) #
+#
+{#
+#
+    if (sum(sapply(list(n, d, power, sig.level), is.null)) != #
+#
+        1) #
+#
+        stop("exactly one of n, d, power, and sig.level must be NULL")#
+#
+    if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > #
+#
+        sig.level | sig.level > 1)) #
+#
+        stop(sQuote("sig.level"), " must be numeric in [0, 1]")#
+#
+    if (!is.null(power) && !is.numeric(power) || any(0 > power | #
+#
+        power > 1)) #
+#
+        stop(sQuote("power"), " must be numeric in [0, 1]")#
+#
+    type <- match.arg(type)#
+#
+    alternative <- match.arg(alternative)#
+#
+    tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1)#
+#
+ttside<-switch(alternative, less = 1, two.sided = 2, greater=3)#
+    tside <- switch(alternative, less = 1, two.sided = 2, greater =1)#
+#
+    if (tside == 2 && !is.null(d)) #
+#
+        d <- abs(d)#
+#
+    if (ttside == 1) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = TRUE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = TRUE)#
+#
+        })#
+#
+    }#
+#
+    if (ttside == 2)  {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            qu <- qt(sig.level/tside, nu, lower = FALSE)#
+#
+            pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + #
+#
+                pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE)#
+#
+        })#
+        print((n - 1) * tsample)#
+        print(qt(sig.level/tside, nu, lower = FALSE))#
+        print(pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE))#
+    }#
+#
+	if (ttside == 3) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = FALSE)#
+#
+        })#
+#
+    }#
+    if (is.null(power)) #
+#
+        power <- eval(p.body)#
+#
+    else if (is.null(n)) #
+#
+        n <- uniroot(function(n) eval(p.body) - power, c(2 + #
+#
+            1e-10, 1e+09))$root#
+#
+    else if (is.null(d)) {#
+#
+ 	if(ttside==2){       d <- uniroot(function(d) eval(p.body) - power, c(1e-07, #
+#
+            10))$root}#
+#
+if(ttside==1){       d <- uniroot(function(d) eval(p.body) - power, c(-10, #
+#
+            5))$root}#
+#
+if(ttside==3){       d <- uniroot(function(d) eval(p.body) - power, c(-5, #
+#
+            10))$root}#
+}#
+#
+    else if (is.null(sig.level)) #
+#
+        sig.level <- uniroot(function(sig.level) eval(p.body) - #
+#
+            power, c(1e-10, 1 - 1e-10))$root#
+#
+    else stop("internal error")#
+#
+    NOTE <- switch(type, paired = "n is number of *pairs*", two.sample = "n is number in *each* group", #
+#
+        NULL)#
+#
+    METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = "Two-sample", #
+#
+        paired = "Paired"), "t test power calculation")#
+#
+    structure(list(n = n, d = d, sig.level = sig.level, power = power, #
+#
+        alternative = alternative, note = NOTE, method = METHOD), #
+#
+        class = "power.htest")#
+#
+}
+pwr.myt.test(d=0.8, sig.level=0.05, n=50)
+"pwr.myt.test" <-#
+#
+function (n = NULL, d = NULL, sig.level = 0.05, power = NULL, #
+#
+    type = c("two.sample", "one.sample", "paired"), alternative = c("two.sided", #
+#
+        "less","greater")) #
+#
+{#
+#
+    if (sum(sapply(list(n, d, power, sig.level), is.null)) != #
+#
+        1) #
+#
+        stop("exactly one of n, d, power, and sig.level must be NULL")#
+#
+    if (!is.null(sig.level) && !is.numeric(sig.level) || any(0 > #
+#
+        sig.level | sig.level > 1)) #
+#
+        stop(sQuote("sig.level"), " must be numeric in [0, 1]")#
+#
+    if (!is.null(power) && !is.numeric(power) || any(0 > power | #
+#
+        power > 1)) #
+#
+        stop(sQuote("power"), " must be numeric in [0, 1]")#
+#
+    type <- match.arg(type)#
+#
+    alternative <- match.arg(alternative)#
+#
+    tsample <- switch(type, one.sample = 1, two.sample = 2, paired = 1)#
+#
+ttside<-switch(alternative, less = 1, two.sided = 2, greater=3)#
+    tside <- switch(alternative, less = 1, two.sided = 2, greater =1)#
+#
+    if (tside == 2 && !is.null(d)) #
+#
+        d <- abs(d)#
+#
+    if (ttside == 1) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = TRUE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = TRUE)#
+#
+        })#
+#
+    }#
+#
+    if (ttside == 2)  {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            qu <- qt(sig.level/tside, nu, lower = FALSE)#
+#
+            pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + #
+#
+                pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE)#
+#
+        })#
+        nu <- (n - 1) * tsample#
+        qu <- qt(sig.level/tside, nu, lower = FALSE)#
+        print((n - 1) * tsample)#
+        print(qt(sig.level/tside, nu, lower = FALSE))#
+        print(pt(qu, nu, ncp = sqrt(n/tsample) * d, lower = FALSE) + pt(-qu, nu, ncp = sqrt(n/tsample) * d, lower = TRUE))#
+    }#
+#
+	if (ttside == 3) {#
+#
+        p.body <- quote({#
+#
+            nu <- (n - 1) * tsample#
+#
+            pt(qt(sig.level/tside, nu, lower = FALSE), nu, ncp = sqrt(n/tsample) * #
+#
+                d, lower = FALSE)#
+#
+        })#
+#
+    }#
+    if (is.null(power)) #
+#
+        power <- eval(p.body)#
+#
+    else if (is.null(n)) #
+#
+        n <- uniroot(function(n) eval(p.body) - power, c(2 + #
+#
+            1e-10, 1e+09))$root#
+#
+    else if (is.null(d)) {#
+#
+ 	if(ttside==2){       d <- uniroot(function(d) eval(p.body) - power, c(1e-07, #
+#
+            10))$root}#
+#
+if(ttside==1){       d <- uniroot(function(d) eval(p.body) - power, c(-10, #
+#
+            5))$root}#
+#
+if(ttside==3){       d <- uniroot(function(d) eval(p.body) - power, c(-5, #
+#
+            10))$root}#
+}#
+#
+    else if (is.null(sig.level)) #
+#
+        sig.level <- uniroot(function(sig.level) eval(p.body) - #
+#
+            power, c(1e-10, 1 - 1e-10))$root#
+#
+    else stop("internal error")#
+#
+    NOTE <- switch(type, paired = "n is number of *pairs*", two.sample = "n is number in *each* group", #
+#
+        NULL)#
+#
+    METHOD <- paste(switch(type, one.sample = "One-sample", two.sample = "Two-sample", #
+#
+        paired = "Paired"), "t test power calculation")#
+#
+    structure(list(n = n, d = d, sig.level = sig.level, power = power, #
+#
+        alternative = alternative, note = NOTE, method = METHOD), #
+#
+        class = "power.htest")#
+#
+}
+pwr.myt.test(d=0.8, sig.level=0.05, n=50)
+pwr.t.test(d=0.8, sig.level=0.05, n=50)
+prospective_gelman(0.8, 50)
+pwr.t.test(d=0.8, sig.level=0.05, n=25)
+prospective_gelman(0.8, 50)
+pwr.t.test(d=0.8, sig.level=0.05, n=25, type="one.sample")
+pwr.t.test(d=0.2, sig.level=0.05, n=23, type="one.sample")
+pwr.t.test(d=0.2, sig.level=0.05, n=23, type="two.sample")
+prospective_gelman(d=0.2, n=23)
+pwr.t.test(d=0.2, sig.level=0.05, n=11, type="two.sample")
+gelman <- function(A, s, alpha=0.05, df=Inf, n.sims=10000){#
+  z <- qt(1-alpha/2, df)#
+  p.hi <- 1 - pt(z-A/s, df)#
+  p.lo <- pt(-z-A/s, df)#
+  power <- p.hi + p.lo#
+  typeS <- p.lo/power#
+  estimate <- A + s*rt(n.sims,df)#
+  significant <- abs(estimate) > s*z#
+  exaggeration <- mean(abs(estimate)[significant])/A#
+  return(list(power=power, typeS=typeS, exaggeration=exaggeration, isSignificant=significant))#
+}
+prospective_gelman(d=0.2, n=23)
+gelman <- function(A, s, alpha=0.05, df=Inf, n.sims=10000){#
+  z <- qt(1-alpha/2, df)#
+  p.hi <- 1 - pt(z-A/s, df)#
+  p.lo <- pt(-z-A/s, df)#
+  power <- p.hi + p.lo#
+  typeS <- p.lo/power#
+  estimate <- A + s*rt(n.sims,df)#
+  significant <- abs(estimate) > s*z#
+  exaggeration <- mean(abs(estimate)[significant])/A#
+  return(list(power=power, typeS=typeS, exaggeration=exaggeration))#
+}
+prospective_gelman(d=0.2, n=23)
+data <- fromJSON('{"method":"powerlmmProxy","data":[{"cohend":0.2,"n1":2,"n2":10,"var_ratio":0.02,"icc_pre_subject":0.8},{"cohend":0.5,"n1":2,"n2":10,"var_ratio":0.02,"icc_pre_subject":0.8},{"cohend":0.8,"n1":2,"n2":10,"var_ratio":0.02,"icc_pre_subject":0.8}]}#
+')
+dat
+data
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}#
+#
+powerlmmProxy <- function(...) {#
+  studyParams <- do.call("study_parameters", as.list(match.call()[-1]))#
+  return(do.call("get_power", list(studyParams)))#
+}
+proxy <- function(method, data) {#
+    result <- lapply(#
+      split(data, 1:nrow(data)),#
+      function(r) unbox(docall(method, r))#
+    )#
+    return(unname(result))#
+}#
+#
+parseFun <- function(r) {#
+  for (key in names(r)) {#
+    if (is.na(r[[key]])) {#
+      next#
+    } else if (r[[key]] == 'fixed.effect') {#
+      r[key] = alist(fixed.effect)#
+    } else if (r[[key]] == 'random.effect') {#
+      r[key] = alist(random.effect)#
+    } else if (r[[key]] == 'weighted.crossover.cluster.level') {#
+      r[key] = alist(weighted.crossover.cluster.level)#
+    } else if (r[[key]] == 'fixed.effect.cluster.level') {#
+      r[key] = alist(fixed.effect.cluster.level)#
+    }#
+  }#
+  return(r)#
+}#
+#
+maybeUnbox <- function(x) {#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1) {#
+    return(x[[1]])#
+  }#
+  return(x)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      print(typeof power[key)#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      print(typeof(power[key))#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      print(typeof(power[key]))#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy('prospective_gelman', data)
+proxy(data$method, data$data)
+data
+library(powerlmm)
+proxy(data$method, data$data)
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      print(power[key].length)#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      print(length(power[key]))#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy(data$method, data$data)
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      print(length(maybeUnbox(power[key])))#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy(data$method, data$data)
+maybeUnbox <- function(x) {#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1 && x[[1]].length < 2) {#
+    return(x[[1]])#
+  }#
+  return(x)#
+}
+maybeUnbox <- function(x) {#
+  if(!is.null(x) && (is.atomic(x) || is.data.frame(x))  && length(dim(x)) < 2) {#
+    return(unbox(x))#
+  } else if (!is.null(x) && length(x) == 1 && length(x[[1]]) < 2) {#
+    return(x[[1]])#
+  }#
+  return(x)#
+}
+proxy(data$method, data$data)
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = maybeUnbox(power[key])#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+proxy(data$method, data$data)
+data <- fromJSON('{"method":"prospective_gelman","data":[{"d":0.2,"alpha":0.05,"n":10},{"d":0.5,"alpha":0.05,"n":10},{"d":0.8,"alpha":0.05,"n":10}]}#
+')
+proxy(data$method, data$data)
+toJSON(proxy(data$method, data$data)#
+)
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = if(row[[key]] == null) maybeUnbox(power[key]) else row[[key]]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data)#
+)
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = if(row[[key]] == NULL) maybeUnbox(power[key]) else row[[key]]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data)#
+)
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = if(is.null(row[[key]]) maybeUnbox(power[key]) else row[[key]]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+docall <- function(method, row) {#
+  newRow <- parseFun(row)#
+  power <- do.call(method, newRow)#
+  if (typeof(power) == 'list' || typeof(power) == 'S4') {#
+    for (key in names(power)) {#
+      row[[key]] = if(is.null(row[[key]])) maybeUnbox(power[key]) else row[[key]]#
+    }#
+  } else {#
+    row[["power"]] <- power#
+  }#
+  return(row)#
+}
+toJSON(proxy(data$method, data$data)#
+)
+data <- fromJSON('{"method":"powerlmmProxy","data":[{"cohend":0.2,"n1":2,"n2":10,"var_ratio":0.02,"icc_pre_subject":0.8},{"cohend":0.5,"n1":2,"n2":10,"var_ratio":0.02,"icc_pre_subject":0.8},{"cohend":0.8,"n1":2,"n2":10,"var_ratio":0.02,"icc_pre_subject":0.8}]}#
+')
+toJSON(proxy(data$method, data$data)#
+)
+pi1 <- Vectorize(function(theta)  dbeta(theta,1,1))
+pi2 <- Vectorize(function(theta)  dbeta(theta,0.5,0.5))
+curve(pi1, xlab=~theta, ylab="Density", main="Non-informative Beta priors", lwd=2, col = "blue")#
+curve(pi2, xlab=~theta, ylab="Density", main="Non-informative Beta priors", lwd=2, col = "red", add=T)#
+legend(0.35, 1.3, c("Uniform","Jeffreys"), col=c("blue","red"),#
+       text.col = "black", lty = c(1, 1), lwd = c(2,2),#
+       merge = TRUE, bg = "gray90",cex=1)
+library(knitr)#
+library(TeachingDemos)
+MeanBeta <- function(a,b) a/(a+b)#
+ModeBeta <- function(a,b){#
+  m <- ifelse(a>1 & b>1, (a-1)/(a+b-2), NA)#
+  return(m)#
+}#
+VarianceBeta <- function(a,b) (a*b)/((a+b)^2*(a+b+1))
+Estimators <- c(r/n, MeanBeta(1+r,n-r+1), MeanBeta(0.5+r,n-r+0.5))#
+Variances <- c(r*(n-r)/(n^3),VarianceBeta(1+r,n-r+1),VarianceBeta(0.5+r,n-r+0.5))#
+tab <- rbind(Estimators,Variances)#
+colnames(tab) <- c("Frequentist","Uniform", "Jeffreys")#
+kable(tab)
+r <- 1#
+n <- 10
+Estimators <- c(r/n, MeanBeta(1+r,n-r+1), MeanBeta(0.5+r,n-r+0.5))#
+Variances <- c(r*(n-r)/(n^3),VarianceBeta(1+r,n-r+1),VarianceBeta(0.5+r,n-r+0.5))#
+tab <- rbind(Estimators,Variances)#
+colnames(tab) <- c("Frequentist","Uniform", "Jeffreys")#
+kable(tab)
+normal(0, 1e6)
+library(stan)
+packages.install('stan')
+packages.install('stan'install.packages("rstan", repos = "https://cloud.r-project.org/", dependencies = TRUE)#
+)
+install.packages("rstan", repos = "https://cloud.r-project.org/", dependencies = TRUE)
+library("rstan")
+normal(0, 1e6)
+rnormal(0, 1e6)
+pnormal(0, 1e6)
+rnorm(0, 1e6)
+library(rstan)
+rstan_options(auto_write = TRUE)#
+#
+library(foreach)
+library(doParallel)
+util <- new.env()#
+source('stan_utility.R', local=util)#
+#
+c_light <- c("#DCBCBC")#
+c_light_highlight <- c("#C79999")#
+c_mid <- c("#B97C7C")#
+c_mid_highlight <- c("#A25050")#
+c_dark <- c("#8F2727")#
+c_dark_highlight <- c("#7C0000")
+writeLines(readLines("fit_data.stan", n=4))
+lambda <- seq(0, 20, 0.001)#
+#
+plot(lambda, dnorm(lambda, 0, 6.44787), type="l", col=c_dark_highlight, lwd=2,#
+     xlab="lambda", ylab="Prior Density", yaxt='n')#
+#
+lambda99 <- seq(0, 15, 0.001)#
+dens <- dnorm(lambda99, 0, 6.44787)#
+lambda99 <- c(lambda99, 15, 0)#
+dens <- c(dens, 0, 0)#
+#
+polygon(lambda99, dens, col=c_dark, border=NA)
+writeLines(readLines("sample_joint_ensemble.stan"))
+data {#
+  int N;#
+}#
+#
+generated quantities {#
+  // Simulate model configuration from prior model#
+  real<lower=0> lambda = fabs(normal_rng(0, 6.44787));#
+  // Simulate data from observational model#
+  int y[N];#
+  for (n in 1:N) y[n] = poisson_rng(lambda);#
+}
+R <- 1000#
+N <- 1000#
+#
+simu_data <- list("N" = N)#
+#
+fit <- stan(file='sample_joint_ensemble.stan', data=simu_data,#
+            iter=R, warmup=0, chains=1, refresh=R,#
+            seed=4838282, algorithm="Fixed_param")
+writeLines(readLines("sample_joint_ensemble.stan"))
+writeLines(readLines("fit_data.stan", n=4))
+writeLines(readLines(file.path(Sys.getenv("HOME"), ".R/Makevars")))
+data {#
+int N;#
+vector[N] x;#
+vector[N] y;#
+}#
+parameters {#
+vector[2] log_a;#
+ordered[2] log_b;#
+real<lower=0> sigma;#
+}#
+transformed parameters {#
+vector<lower=0>[2] a;#
+vector<lower=0>[2] b;#
+a <- exp(log_a);#
+b <- exp(log_b);#
+}#
+model {#
+vector[N] ypred;#
+ypred <- a[1]*exp(-b[1]*x) + a[2]*exp(-b[2]*x);#
+y ~ lognormal(log(ypred), sigma);#
+}
+data {#
+int N;#
+vector[N] x;#
+vector[N] y;#
+}
+stan
+a <- c(.8, 1)#
+b <- c(2, .1)#
+sigma <- .2#
+# Simulate data#
+x <- (1:1000)/100#
+N <- length(x)#
+ypred <- a[1]*exp(-b[1]*x) + a[2]*exp(-b[2]*x)#
+y <- ypred*exp(rnorm(N, 0, sigma))#
+# Fit the model#
+library("rstan")#
+fit <- stan("exponentials.stan", data=list(N=N, x=x, y=y), iter=1000, chains=4)#
+print(fit, pars=c("a", "b", "sigma"))
+library("rstan")
+a <- c(.8, 1)#
+b <- c(2, .1)#
+sigma <- .2#
+# Simulate data#
+x <- (1:1000)/100#
+N <- length(x)#
+ypred <- a[1]*exp(-b[1]*x) + a[2]*exp(-b[2]*x)#
+y <- ypred*exp(rnorm(N, 0, sigma))#
+# Fit the model#
+library("rstan")#
+fit <- stan("exponentials.stan", data=list(N=N, x=x, y=y), iter=1000, chains=4)#
+print(fit, pars=c("a", "b", "sigma"))
+packages.install(rstan)
+package.install(rstan)
+options(mc.cores = parallel::detectCores())
+rstan_options(auto_write = TRUE)
+library("rstan") # observe startup messages
+getwd()
+library(pwr)
+# Define UI for miles per gallon app ----#
+ui <- fluidPage(#
+#
+  # App title ----#
+  titlePanel("Miles Per Gallon"),#
+#
+  # Sidebar layout with input and output definitions ----#
+  sidebarLayout(#
+#
+    # Sidebar panel for inputs ----#
+    sidebarPanel(#
+#
+      # Input: Selector for variable to plot against mpg ----#
+      selectInput("variable", "Variable:",#
+                  c("Cylinders" = "cyl",#
+                    "Transmission" = "am",#
+                    "Gears" = "gear")),#
+#
+      # Input: Checkbox for whether outliers should be included ----#
+      checkboxInput("outliers", "Show outliers", TRUE)#
+#
+    ),#
+#
+    # Main panel for displaying outputs ----#
+    mainPanel(#
+#
+      # Output: Formatted text for caption ----#
+      h3(textOutput("caption")),#
+#
+      # Output: Plot of the requested variable against mpg ----#
+      plotOutput("mpgPlot")#
+#
+    )#
+  )#
+)
+ibrary(shiny)
+library(shiny)
+runApp("~/shiny1")
+runApp("/Users/kristinlindquist/shiny1")
+runApp("/Users/kristinlindquist/shiny1/")
+runApp("/Users/kristinlindquist/shiny1/")
