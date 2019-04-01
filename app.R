@@ -4,12 +4,7 @@ library(pwr)
 library(ggplot2)
 library(dplyr)
 library(DT)
-
-R1 <- c(name = "1:1 (e.g. phase III RCT)", remaining = 0, R = 1)
-R0.2 <- c(name = "1:5 (e.g. phase I/II RCT)", remaining = 1, R = 0.2)
-R0.1 <- c(name = "1:10 (e.g. exploratory epidemiological study)", remaining = 2, R = 0.1)
-R0.01 <- c(name = "1:100", remaining = 3, R = 0.01)
-R0.001 <- c(name = "1:1,000 (e.g. discovery-oriented exploratory research)", remaining = 5, R = 0.001)
+library(tidyverse)
 
 biases <- list(
   "0.1" = list(name = "Low (0.1) (e.g. high quality RCT)", value = 0.1),
@@ -36,256 +31,305 @@ ui <- fluidPage(
   ),
   hr(),
   sidebarPanel(
-    sliderInput(
-      "TDV",
-      label="True discovery value (TDV)",
-      min = 0,
-      max = 100,
-      post  = "m $",
-      value = 50,
-      step = 5
-    ),
-    sliderInput(
-      "TNV",
-      label="True negative value (TNV)",
-      min = 0,
-      max = 10,
-      post  = "m $",
-      value = 1,
-      step = 0.5
-    ),
-    hr(),
-    fluidRow(
-      column(
-        6,
-        selectInput(
-          "es",
-          "Effect size (Cohen's d):",
-          c(
-            "Very Small (0.1)" = 0.1,
-            "Small (0.3)" = 0.3,
-            "Medium (0.5)" = 0.5,
-            "Large (0.8)" = 0.8,
-            "Very Large (1.2)" = 1.2
-          ),
-          selected = "0.5"
-        )
-      ),
-      column(
-        6,
-        selectInput(
-          "biases",
-          "Bias values to show",
-          lapply(biases, function(x) { x$value }),
-          multiple = TRUE,
-          selected = c(0.1, 0.3, 0.5, 0.8)
-        )
-      )
-    ),
-    selectInput(
-      "phase",
-      "Pre-study odds (R):",
-      c(
-        "1:1 (similar to that of a phase III RCT)" = "R1",
-        "1:5 (similar to that of a phase I/II RCT)" = "R0.2",
-        "1:10 (similar to that of an epidemiological study)" = "R0.1",
-        "1:100" = "R0.01",
-        "1:1,000 (e.g. discovery-oriented exploratory research)" = "R0.001"
-      ),
-      selected = "R0.1"
-    ),
-    hr(),
-    fluidRow(
-      column(
-        6,
+    tabsetPanel(type = "pills",
+      tabPanel(
+        "Main", 
+        hr(),
         sliderInput(
-          "SRP",
-          label="Subsequent research phases (SRP)",
+          "TDV",
+          label="True discovery value (TDV)",
+          min = 0,
+          max = 100,
+          post  = "m $",
+          value = 50,
+          step = 5
+        ),
+        sliderInput(
+          "TNV",
+          label="True negative value (TNV)",
           min = 0,
           max = 10,
-          value = 2,
-          step = 1
-        )
-      ),
-      column(
-        6,
+          post  = "m $",
+          value = 1,
+          step = 0.5
+        ),
         sliderInput(
-          "GAE",
-          label="Grant amount escalation (GAE)",
+          "RWFDC",
+          label="Cost of a false discovery in the real world (RWFDC)",
           min = 0,
-          max = 300,
-          value = 100,
+          max = 100,
+          post  = "m $",
+          value = 30,
+          step = 5
+        ),
+        hr(),
+        fluidRow(
+          column(
+            6,
+            selectInput(
+              "es",
+              "Effect size (Cohen's d):",
+              c(
+                "Very Small (0.1)" = 0.1,
+                "Small (0.3)" = 0.3,
+                "Medium (0.5)" = 0.5,
+                "Large (0.8)" = 0.8,
+                "Very Large (1.2)" = 1.2
+              ),
+              selected = "0.5"
+            )
+          ),
+          column(
+            6,
+            selectInput(
+              "biases",
+              "Bias values to show",
+              lapply(biases, function(x) { x$value }),
+              multiple = TRUE,
+              selected = c(0.1, 0.3, 0.5, 0.8)
+            )
+          )
+        ),
+        selectInput(
+          "R",
+          "Pre-study odds (R):",
+          c(
+            "1:1 (e.g. phase III RCT)" = 1,
+            "1:5 (e.g. phase I/II RCT)" = 0.2,
+            "1:10 (e.g. exploratory epidemiological study)" = 0.1,
+            "1:100" = 0.01,
+            "1:1,000 (e.g. discovery-oriented exploratory research)" = 0.001
+          ),
+          selected = 0.1
+        )   
+      ),
+      tabPanel(
+        "Research Funnel",
+        hr(),
+        sliderInput(
+          "SRP",
+          label="Max subsequent research phases (SRP)",
+          min = 0,
+          max = 10,
+          value = 5,
+          step = 1
+        ),
+        sliderInput(
+          "BCR",
+          label="Bias correction rate (BCR)",
+          min = 0,
+          max = 0.5,
+          value = 0.1,
+          step = 0.05
+        ),
+        sliderInput(
+          "PCR",
+          label="Power correction rate (PCR)",
+          min = 0,
+          max = 0.5,
+          value = 0.1,
+          step = 0.05
+        ),
+        sliderInput(
+          "CPPE",
+          label="Per-subject cost escalation (CPPE)",
+          min = 0,
+          max = 200,
+          value = 50,
           post  = " %",
-          step = 25
+          step = 10
+        ),
+        sliderInput(
+          "PGE",
+          label="Percent grant for per-subject costs escalation (PGE)",
+          min = 0,
+          max = 100,
+          value = 20,
+          post  = " %",
+          step = 5
+        ),
+        numericInput("maxCPP", "Max cost per subject ($)", value = 5000)
+      ),
+      tabPanel(
+        "Grant", 
+        hr(),
+        fluidRow(
+          column(
+            6,
+            numericInput("minGrant", "Min grant ($)", value = 150000)
+          ),
+          column(
+            6,
+            numericInput("maxGrant", "Max grant ($)", value = 1500000)
+          )
+        ),
+        numericInput("cpp", "Per-subject cost ($)", value = 1000),
+        sliderInput(
+          "percentGrant",
+          label="Percent grant for per-subject costs (percentGrant)",
+          min = 0,
+          max = 100,
+          value = 50,
+          post  = " %",
+          step = 10
         )
       )
-    ),
-    sliderInput(
-      "BCR",
-      label="Bias correction rate (BCR)",
-      min = 0,
-      max = 0.8,
-      value = 0.2,
-      step = 0.1
-    ),
-    sliderInput(
-      "RWFDC",
-      label="Cost of a false discovery in the real world (RWFDC)",
-      min = 0,
-      max = 100,
-      post  = "m $",
-      value = 10,
-      step = 5
-    ),
-    hr(),
-    fluidRow(
-      column(
-        6,
-        numericInput("minGrant", "Min grant ($)", value = 50000)
-      ),
-      column(
-        6,
-        numericInput("maxGrant", "Max grant ($)", value = 1000000)
-      )
-    ),
-    numericInput("cpp", "Per-subject total cost ($)", value = 1000),
-    sliderInput(
-      "pctSample",
-      label="% Grant going to per-subject costs",
-      min = 0,
-      max = 100,
-      post  = " %",
-      value = 50,
-      step = 5
     )
   ),
 
   mainPanel(
-    plotOutput("graph", click = "graph_click"),
-    hr(),
-    tags$samp(
-      htmlOutput("showInput")
-    ),
-    hr(),
-    verbatimTextOutput("info"),
-    hr(),
-    h3("About"),
-    p("This is a simple model with which to explore the relationship between study power and grant ROI.
-      Funding underpowered studies (i.e. too few participants) can have negative ROI. At the same time, overpowered studies
-      aren't cost effective either. Note that this model relies on hard-to-predict but impactful parameters such as
-      base rate, effect size and downstream costs of false negatives and positives. The point of this model is to understand
-      how these parameters may relate, not to draw any hard conclusions."),
-    tags$h5(
-      tags$b(
-        tags$span("Concept and PPV calculation from "),
-        a(href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124", "Ioannidis 2005")
-      )
-    ),
-    h3("Parameters"),
-    tags$ul(
-      tags$li(
-        tags$b("True discovery value (TDV) - "),
-        tags$span("what is the value of a discovery that is in fact true?")
+    tabsetPanel(type = "tabs",
+      tabPanel(
+        "Plot",
+        br(),
+        plotOutput("graph", click = "graph_click"),
+        hr(),
+        tags$samp(
+          htmlOutput("showInput")
+        ),
+        hr(),
+        h5("Point data"),
+        tableOutput("infoTable"),
+        hr(),
+        h6("False discovery funnel"),
+        tableOutput("funnelTable") 
       ),
-      tags$li(
-        tags$b("True negative value (TNV) - "),
-        tags$span("what is the value a true negative?")
-      ),
-      tags$li(
-        tags$b("Effect size - "),
-        tags$span("average effect size measured in funded research")
-      ),
-      tags$li(
-        tags$b("Pre-study odds (R) - "),
-        tags$span("Prior probability that the tested hypothesis is true")
-      ),
-      tags$li(
-        tags$b("Bias (u) - "),
-        tags$span("% of positive findings arising because of design, analysis or reporting bias")
-      ),
-      tags$li(
-        tags$b("Cost of a false discovery in the real world (RWFDC) - "),
-        tags$span("what is the cost if a false discovery makes it past all research stages and into the real world, e.g. a pharmaceutical with no real clinical value making it to market?")
-      )
-    ), 
-    h3("Calculation of value"),
-    tags$h5("Value = Positive Finding Value (PFV) + Negative Finding Value (NFV)"),
-    tags$span("where"),
-    tags$ul(
-      tags$li(
-        tags$h5("PFV = PFR * ((PPV * TDV) - (FDR * (WRC + RFDIRL * RWFDC)))"),
+      tabPanel("Data Table", br(), dataTableOutput("table")),
+      tabPanel(
+        "About",
+        h3("About"),
+        p("This is a simple model with which to explore the relationship between study power and grant ROI.
+          Funding underpowered studies (i.e. too few participants) can have negative ROI. At the same time, overpowered studies
+          aren't cost effective either. Note that this model relies on hard-to-predict but impactful parameters such as
+          base rate, effect size and downstream costs of false negatives and positives. The point of this model is to understand
+          how these parameters may relate, not to inform hard conclusions."),
+        tags$h5(
+          tags$b(
+            tags$span("Concept and PPV calculation from "),
+            a(href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124", "Ioannidis 2005")
+          )
+        ),
+        h3("Parameters"),
         tags$ul(
           tags$li(
-            tags$span("PFR = positive finding rate = TPR + FPR"),
+            tags$b("True discovery value (TDV) - "),
+            tags$span("what is the value of a discovery that is in fact true?")
+          ),
+          tags$li(
+            tags$b("True negative value (TNV) - "),
+            tags$span("what is the value a true negative?")
+          ),
+          tags$li(
+            tags$b("Effect size - "),
+            tags$span("average effect size measured in funded research")
+          ),
+          tags$li(
+            tags$b("Pre-study odds (R) - "),
+            tags$span("Prior probability that the tested hypothesis is true")
+          ),
+          tags$li(
+            tags$b("Bias (u) - "),
+            tags$span("% of positive findings arising because of design, analysis or reporting bias")
+          ),
+          tags$li(
+            tags$b("Cost of a false discovery in the real world (RWFDC) - "),
+            tags$span("what is the cost if a false discovery makes it past all research stages and into the real world, e.g. a pharmaceutical with no real clinical value making it to market?")
+          ),
+          tags$li(
+            tags$b("Subsequent research phases (SRP) - "),
+            tags$span("assuming a positive result, how many more phases of research before finding is released into the real world?")
+          ),
+          tags$li(
+            tags$b("Power correction rate (PCR) - "),
+            tags$span("for each subsequent research phase, how much higher is the power than the previous?")
+          ),
+          tags$li(
+            tags$b("Bias correction rate (BCR) - "),
+            tags$span("for each subsequent research phase, how much is biased reduced?")
+          )
+        ), 
+        h3("Calculation of value"),
+        tags$h5("Value = Positive Finding Value (PFV) + Negative Finding Value (NFV)"),
+        tags$span("where"),
+        tags$ul(
+          tags$li(
+            tags$h5("PFV = PFR * ((PPV * TDV) - (FDR * (WRC + RFDIRL * RWFDC)))"),
             tags$ul(
-              tags$li("TPR = true positive rate = ([1 - β]R + uβR) / (R + 1)"),
-              tags$li("FPR = false positive rate = (α + u(1 - α)) / (R + 1)")
+              tags$li(
+                tags$span("PFR = positive finding rate = TPR + FPR"),
+                tags$ul(
+                  tags$li("TPR = true positive rate = ([1 - β]R + uβR) / (R + 1)"),
+                  tags$li("FPR = false positive rate = (α + u(1 - α)) / (R + 1)")
+                )
+              ),
+              tags$li(
+                tags$span("PPV = positive predictive value = ([1 - β]R + uβR)/(R + α − βR + u − uα + uβR)")        
+              ),
+              tags$li("FDR = false discovery rate = 1 - PPV"),
+              tags$li("WRC = wasted research cost = recursively calculated costs of subsequent research due to false discovery"),
+              tags$li("RFDIRL = Risk of false discovery getting past all research stages and into the real world"),
+              tags$li("RWFDC = Cost of a false discovery in the real world")
             )
-          ),
-          tags$li(
-            tags$span("PPV = positive predictive value = ([1 - β]R + uβR)/(R + α − βR + u − uα + uβR)")        
-          ),
-          tags$li("FDR = false discovery rate = 1 - PPV"),
-          tags$li("WRC = wasted research cost = recursively calculated costs of subsequent research due to false discovery"),
-          tags$li("RFDIRL = Risk of false discovery getting past all research stages and into the real world"),
-          tags$li("RWFDC = Cost of a false discovery in the real world")
-        )
-      )
-    ),
-    tags$ul(
-      tags$li( 
-        tags$h5("NFV = (TNR * TNV) - (FNR * TDV)"),
+          )
+        ),
         tags$ul(
-          tags$li("TNR = true negative rate = ((1 - u) * (1 - α)) / (R + 1)"),
-          tags$li("FNR = false negative rate = (1 - u)βR/(R + 1)"),
-          tags$li("TDV = value of a true discovery, effectively lost due to false negative")
+          tags$li( 
+            tags$h5("NFV = (TNR * TNV) - (FNR * TDV)"),
+            tags$ul(
+              tags$li("TNR = true negative rate = ((1 - u) * (1 - α)) / (R + 1)"),
+              tags$li("FNR = false negative rate = (1 - u)βR / (R + 1)"),
+              tags$li("TDV = value of a true discovery, effectively lost due to false negative")
+            )
+          )
+        ),
+        tags$div(
+          tags$span("Power calculation done with "),
+          a(href="https://www.rdocumentation.org/packages/pwr/versions/1.2-2", "R library pwr")
+        ),
+        hr(),
+        h3("Model limitations"),
+        tags$ul(
+          tags$li("Assumes one experiment per grant, which is highly unlikely for exploratory research."),
+          tags$li("Assumes entire grant funds per-subject direct costs - i.e. this model ignores overhead of all sorts."),
+          tags$li("Does not consider the costs of effect size inflation (common in the case of false discovery in an underpowered studies)."),
+          tags$li("The value of true discoveries is hard to estimate, yet this model relies on it heavily."),
+          tags$li("The value of true negatives and costs of false discoveries are even harder to estimate, yet this model is quite sensitive to these parameters."),
+          tags$li("Research funnel costs are not considered in the true discovery value calculation.")
+        ),
+        h3("Conceptual limitations"),
+        tags$ul(
+          tags$li("'Average' does not capture the likely nonlinearity of costs/benefits of false/true discoveries, e.g. non-linear increase in epistemic and reputation costs in relation to the density of false positives."),
+          tags$li("Type I and Type II errors are a limited and flawed assessment of study results."),
+          tags$li("Relatedly, this model suffers from dichotomania: for simplicity, it treats trueness/falsity as binary designations rather than as a continuum."),
+          tags$li("Relatedly, the very notion of 'negative finding' conflates absence of evidence with evidence of absence.")
+        ),
+        h3("Other Assumptions"),
+        tags$ul(
+          tags$li("2-sample (50/50) non-paired design evaluated with a T-test of means"),
+          tags$li("α = .05")
+        ),
+        hr(),
+        tags$blockquote(
+          p("All models are wrong, but some are useful."),
+          tags$small("George E.P. Box")
+        ),
+        hr(),
+        h5(
+          tags$span("If you see an error or want to say hi for another reason, please "),
+          a(href="mailto:kristin@rationally.io", "email me.")
         )
       )
-    ),
-    tags$div(
-      tags$span("Power calculation done with "),
-      a(href="https://www.rdocumentation.org/packages/pwr/versions/1.2-2", "R library pwr")
-    ),
-    hr(),
-    h3("Model limitations"),
-    tags$ul(
-      tags$li("Assumes one experiment per grant, which is highly unlikely for exploratory research"),
-      tags$li("Does not factor effect size into the value assessment of a true discovery; effect size is only used for Power calculation"),
-      tags$li("Does not consider the costs of effect size inflation (common in the case of false discovery in an underpowered studies)")
-    ),
-    h3("Conceptual limitations"),
-    tags$ul(
-      tags$li("'Average' does not capture the likely nonlinearity of costs/benefits of false/true discoveries"),
-      tags$li("Type I and Type II errors are a limited and flawed view into study results")
-    ),
-    h3("Other Assumptions"),
-    tags$ul(
-      tags$li("2-sample (50/50) non-paired design evaluated with a T-test of means"),
-      tags$li("α = .05")
-    ),
-    hr(),
-    h3("Generated data"),
-    dataTableOutput("table"),
-    hr(),
-    tags$blockquote(
-      p("All models are wrong, but some are useful."),
-      tags$small("George E.P. Box")
-    ),
-    hr(),
-    h5(
-      tags$span("If you see an error or want to say hi for another reason, please "),
-      a(href="mailto:kristin@rationally.io", "email me.")
     )
   )
 )
 
 # Constants
 α <- 0.05
-PctSample <- 0.50
 EffectSize <- 0.50
+StudyArmCount <- 2
 
 MaxDots <- 40
-Data <- data.frame()
+Data <- tibble()
 
 ## start true effect
 # True positives
@@ -385,43 +429,78 @@ FDR <- function(power, R, u) {
   return(1 - PPV(power, R, u))
 }
 
-TotalValue <- function(Total.FDC, Total.TDV, Total.FNC, Total.TNV) {
-  return(fix(Total.TDV - Total.FDC - Total.FNC + Total.TNV))
+ExpectedValue <- function(Tot.FDC, Tot.TDV, Tot.FNC, Tot.TNV) {
+  return(fix(Tot.TDV - Tot.FDC - Tot.FNC + Tot.TNV))
 }
 
-SubsequentCosts <- function(power, grant, R, u, cpp, SRP, GAE, BCR, ...) {
-  total <- 0
+NextPhaseCosts <- function(...) {
+  pcData <- tibble(
+    remaining = integer(),
+    grant = numeric(),
+    cpp = numeric(),
+    R = numeric(),
+    bias = numeric(),
+    power = numeric(),
+    fdr = numeric(),
+    waste = numeric(),
+    note = "",
+  )
 
-  nextStageR <- PPV(power, R, u)
-  nextGrant <- grant * (GAE + 1)
-  nextPower <- Power(SampleSize(nextGrant, cpp))
-  nextU <- max(0.1, u - BCR)
-  
-  nextStageFDR <- FDR(nextPower, nextStageR, nextU)
-  
-  if (SRP > 0) {
-    SRP = SRP - 1
-    nextStageCost = SubsequentCosts(
+  inner <- function(power, grant, R, u, cpp, SRP, PCR, BCR, CPPE, percentGrant, PGE, maxCPP, ...) {
+    waste <- 0
+    nextR <- PPV(power, R, u)
+    nextCPP <- min(maxCPP, (CPPE + 1) * cpp)
+    nextPower = min(0.9, power + PCR)
+    nextPercentGrant = min(0.9, percentGrant + PGE)
+    nextGrant <- (nextCPP * SampleSizeByPower(nextPower) * StudyArmCount) / nextPercentGrant
+    nextU <- max(0.1, u - BCR)
+    currentFDR <- FDR(power, R, u)
+    nextFDR <- FDR(nextPower, nextR, nextU)
+    
+    # more research is pointless
+    # likely due to good behavior (low bias, high power)
+    earlyExit <- SRP > 0 && ((currentFDR - nextFDR) * RWFDC) < nextGrant
+    exit <- earlyExit
+
+    if (SRP > 0 && !earlyExit) {
+      Recall(
+        power = nextPower,
+        R = nextR,
+        u = nextU,
+        grant = nextGrant,
+        cpp = nextCPP,
+        SRP = SRP - 1,
+        PCR = PCR,
+        BCR = BCR,
+        CPPE = CPPE,
+        percentGrant = nextPercentGrant,
+        PGE = PGE,
+        maxCPP = maxCPP
+      )
+      waste <- nextGrant
+    } else {
+      # final waste/cost for false discoveries that make it through
+      # all stages of research and into the real world
+      exit <- TRUE
+      waste <- nextFDR * RWFDC
+    }
+    pcData <<- add_row(
+      pcData,
+      remaining = as.integer(SRP),
+      bias = nextU,
       power = nextPower,
-      R = nextStageR,
-      u = nextU,
-      grant = nextGrant,
-      cpp = cpp,
-      SRP = SRP,
-      GAE = GAE,
-      BCR = BCR
+      grant = ifelse(!exit, nextGrant, 0),
+      R = nextR,
+      fdr = nextFDR,
+      cpp = ifelse(!exit, nextCPP, 0),
+      waste = waste,
+      note = ifelse(earlyExit, "early exit", "")
     )
-    total = (nextGrant * nextStageFDR) + nextStageCost
-  } else {
-    # final cost for false discoveries that make it through
-    # all stages of research and into the real world
-    total = total + (nextStageFDR * RWFDC)
+    return(waste)
   }
-  return(total);
-}
 
-FalseDiscoveryCost <- function(FPR, ...) {
-  return(SubsequentCosts(...) * FPR)
+  inner(...)
+  return(pcData)
 }
 
 TrueDiscoveryValue <- function(power, TDV, R, u, ...) {
@@ -446,10 +525,19 @@ Power <- function(ss) {
   )$power))
 }
 
-SampleSize <- function(grant, cpp) {
-  studyArmCount <- 2
-  total <- (grant * PctSample) / cpp
-  return (total / studyArmCount)
+SampleSizeByPower <- function(power) {
+  return(fix(pwr.t.test(
+    power=power,
+    d=EffectSize,
+    sig.level=α,
+    type="two.sample",
+    alternative="two.sided"
+  )$n))
+}
+
+SampleSize <- function(grant, cpp, percentGrant, ...) {
+  total <- (grant * percentGrant) / cpp
+  return (total / StudyArmCount)
 }
 
 fix <- function(x) {
@@ -462,39 +550,62 @@ round_any <- function(x, accuracy, f = round){
 
 getDataPerU <- function (data, R, u, ...) {
   return(data %>% mutate(
+    R = R,
+    u = u,
     TPR = TPR(power, R = R, u = u),
     FPR = FPR(power, R = R, u = u),
     TNR = TNR(power, R = R, u = u),
     FNR = FNR(power, R = R, u = u),
-    Total.FDC = FalseDiscoveryCost(power, grant, R = R, u = u, FPR = FPR, ...),
-    Total.TDV = TrueDiscoveryValue(power, R = R, u = u, ...),
-    Total.FNC = FalseNegCost(power, R = R, u = u, ...),
-    Total.TNV = TrueNegValue(power, R = R, u = u, ...),
-    Total.Value = TotalValue(Total.FDC, Total.TDV, Total.FNC, Total.TNV),
-    ROI = (Total.Value - grant) / grant
+    Tot.TDV = TrueDiscoveryValue(power, R = R, u = u, ...),
+    Tot.FNC = FalseNegCost(power, R = R, u = u, ...),
+    Tot.TNV = TrueNegValue(power, R = R, u = u, ...)
   ))
 }
 
-getData <- function(cpp, maxGrant, minGrant, selectedBiases, ...) {
-  grant <- seq.int(
-    from=minGrant,
-    to=maxGrant,
-    by=max(cpp, round_any((maxGrant / MaxDots), cpp))
-  )
-  data <- data.frame(grant)
-  data <- data %>% mutate(power = Power(SampleSize(grant, cpp)))
-
+getPerBiasData <- function(data, cpp, selectedBiases, ...) {
   datalist = list()
 
   for (i in biases) {
     if (is.element(paste(i$value), selectedBiases)) {
       u = paste(i$value)
-      dat <- getDataPerU(u = i$value, data = data, cpp = cpp, ...)
+      dat <- getDataPerU(
+        u = i$value,
+        data = data,
+        cpp = cpp,
+        ...
+      )
       dat$u <- u
       datalist[[u]] <- dat
     }
   }
-  Data <<- do.call(rbind, datalist)
+
+  return(do.call(rbind, datalist))
+}
+
+getData <- function(cpp, maxGrant, minGrant, ...) {
+  data <- tibble(grant = seq.int(
+    from=minGrant,
+    to=maxGrant,
+    by=max(cpp, round_any((maxGrant / MaxDots), cpp))
+  ))
+  data <- data %>% mutate(power = Power(SampleSize(grant, cpp, ...)))
+  data <- getPerBiasData(data = data, cpp = cpp, ...)
+
+  # rowwise because of recursion... maybe there is a better way?
+  data <- data %>% rowwise() %>% mutate(
+    Tot.FDC = sum(NextPhaseCosts(
+      power = power,
+      grant = grant,
+      u = as.numeric(u),
+      cpp = cpp,
+      ...
+    )$waste) * FPR
+  )
+
+  Data <<- data %>% mutate(
+    ExpectedValue = ExpectedValue(Tot.FDC, Tot.TDV, Tot.FNC, Tot.TNV) - grant,
+    ROI = ExpectedValue / grant
+  )
 }
 
 getPlot <- function(cpp) {
@@ -534,7 +645,6 @@ clean <- function(x, digits) {
   return(formatRound(x, digits))
 }
 
-
 formatInput <- function(inputs) {
   inp = c()
   for (name in names(inputs)) {
@@ -546,12 +656,7 @@ formatInput <- function(inputs) {
 }
 
 server <- function(input, output, session) {
-  observeEvent(input$phase, {
-    updateSelectInput(session, "SRP", selected = get(input$phase)["remaining"])
-  })
-
   data <- reactive({
-    PctSample <<- input$pctSample / 100
     EffectSize <<- as.numeric(input$es)
     RWFDC <<- (input$RWFDC * 1000 * 1000)
     getData(
@@ -560,11 +665,15 @@ server <- function(input, output, session) {
       minGrant = input$minGrant,
       TDV = input$TDV * 1000 * 1000,
       TNV = input$TNV * 1000 * 1000,
-      R = as.numeric(get(input$phase)["R"]),
+      R = as.numeric(input$R),
       selectedBiases = input$biases,
-      GAE = input$GAE / 100,
+      PCR = input$PCR,
       SRP = input$SRP,
-      BCR = input$BCR
+      BCR = input$BCR,
+      CPPE = input$CPPE / 100,
+      PGE = input$PGE / 100,
+      percentGrant = input$percentGrant / 100,
+      maxCPP = input$maxCPP
     )
   })
 
@@ -579,14 +688,36 @@ server <- function(input, output, session) {
     HTML(inputDisp)
   })
 
-  toKeep <- c("grant", "u", "power", "TPR", "FPR", "TNR", "FNR", "Total.TDV", "Total.TNV", "Total.FDC", "Total.FNC", "ROI")
+  toKeep <- c("grant", "u", "power", "TPR", "FPR", "TNR", "FNR", "Tot.TDV", "Tot.TNV", "Tot.FDC", "Tot.FNC", "ROI")
   output$table <- renderDataTable({
     datatable(data() %>% select(one_of(toKeep)) %>% mutate_if(is.numeric, formatRound, 2))
   })
 
-  output$info <- renderPrint({
+  output$infoTable <- renderTable({
     row <- nearPoints(data(), input$graph_click, threshold = 10, maxpoints = 1, addDist = FALSE)
-    return(row %>% select(one_of(toKeep)) %>% mutate_if(is.numeric, clean, 2))
+    if (nrow(row) > 0) {
+      row %>% select(one_of(toKeep)) %>% mutate_if(is.numeric, clean, 2)
+    }
+  })
+
+  output$funnelTable <- renderTable({
+    row <- nearPoints(data(), input$graph_click, threshold = 10, maxpoints = 1, addDist = FALSE)
+    if (nrow(row) > 0) {
+      NextPhaseCosts(
+        power = row$power,
+        grant = row$grant,
+        R = as.numeric(input$R),
+        u = as.numeric(row$u),
+        cpp = input$cpp,
+        SRP = input$SRP,
+        PCR = input$PCR,
+        BCR = input$BCR,
+        CPPE = input$CPPE / 100,
+        PGE = input$PGE / 100,
+        percentGrant = input$percentGrant / 100,
+        maxCPP = input$maxCPP
+      ) %>% mutate_if(is.numeric, clean, 2)
+    }
   })
 }
 
