@@ -19,7 +19,7 @@ ui <- fluidPage(
     fluidRow(
       column(
         12,
-        h2("Study Power, reproducibility and grant ROI"),
+        h2("Reproducibility and Grant ROI"),
         h5(
           a(href="http://www.rationally.io", "By Rationally."),
           tags$span(" Calculations based on "),
@@ -198,17 +198,10 @@ ui <- fluidPage(
       tabPanel(
         "About",
         h3("About"),
-        p("This is a simple model with which to explore the relationship between study power and grant ROI.
-          Funding underpowered studies (i.e. too few participants) can have negative ROI. At the same time, overpowered studies
-          aren't cost effective either. Note that this model relies on hard-to-predict but impactful parameters such as
-          base rate, effect size and downstream costs of false negatives and positives. The point of this model is to understand
-          how these parameters may relate, not to inform hard conclusions."),
-        tags$h5(
-          tags$b(
-            tags$span("Concept and PPV calculation from "),
-            a(href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124", "Ioannidis 2005")
-          )
-        ),
+        p("Use this model to explore the relationship between study power, bias and grant ROI.
+          Underpowered studies (i.e. too few participants) can result in negative ROI and
+          overpowered studies aren't cost effective. Bias decreases ROI, but only when one
+          considers the downstream costs of a false positive."),
         h3("Parameters"),
         tags$ul(
           tags$li(
@@ -312,6 +305,12 @@ ui <- fluidPage(
         tags$blockquote(
           p("All models are wrong, but some are useful."),
           tags$small("George E.P. Box")
+        ),
+        hr(),
+        h4("Citations"),
+        p(
+          tags$span("Ioannidis, J. P. A. (2005). Why Most Published Research Findings Are False. PLoS Medicine, 2(8), e124. "),
+          tags$a(href="https://doi.org/10.1371/journal.pmed.0020124", "10.1371/journal.pmed.0020124")
         ),
         hr(),
         h5(
@@ -610,15 +609,15 @@ getData <- function(cpp, maxGrant, minGrant, ...) {
 
 getPlot <- function(cpp) {
   return (
-    ggplot2::ggplot(Data, ggplot2::aes(x=grant, y=ROI, color=u)) +
+    ggplot2::ggplot(Data, ggplot2::aes(x=grant, y=ROI, group=u, color=u)) +
     ggplot2::ylab("Net ROI") +
     ggplot2::scale_y_continuous(
       # trans = asinh_trans(),
       labels = scales::percent,
       limits = c(min(0, min(Data$ROI)), max(Data$ROI))
     ) +
-    ggplot2::geom_line(size=0.75, na.rm = TRUE) +
-    ggplot2::geom_point(colour="#474747", size=1, na.rm = TRUE) +
+    ggplot2::geom_line(size=1, na.rm = TRUE) +
+    ggplot2::geom_point(size=1.75, na.rm = TRUE) +
     ggplot2::xlab("Grant Amount") +
     ggplot2::geom_vline(
       xintercept = Data$grant[min(which(Data$power > 0.8))],
@@ -627,8 +626,16 @@ getPlot <- function(cpp) {
       colour="gray"
     ) +
     ggplot2::scale_x_continuous(
-      labels=scales::dollar,
+      labels = scales::dollar,
       limits = c(min(Data$grant), max(Data$grant) + cpp)
+    ) +
+    scale_color_manual(
+      values = c(
+          "0.1" = "springgreen4",
+          "0.3" = "springgreen3",
+          "0.5" = "orange",
+          "0.8" = "red"
+      )
     )
   )
 }
